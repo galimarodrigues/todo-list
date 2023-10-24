@@ -35,3 +35,8 @@ O aplicativo TODO List oferece as seguintes funcionalidades:
 ### 6. Comunicação via JSON
 
 -   O aplicativo se comunica com o backend por meio de trocas de dados no formato JSON.
+
+## Preview do App
+![Capturar](https://github.com/galimarodrigues/todo-list/assets/117487712/9aebafc8-9ead-4811-8fec-27d9c72508b4)
+![Capturar2](https://github.com/galimarodrigues/todo-list/assets/117487712/37bb03de-e651-402f-bcc6-7d0f158a8efd)
+
