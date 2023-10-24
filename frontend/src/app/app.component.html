@@ -1,0 +1,72 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+
+<main class="todo-app">
+  <img
+    *ngIf="isImageVisible"
+    class="todo-image"
+    src="../assets/pictures/todo-img.png"
+    alt="Title Image"
+  />
+  <h1>{{ pageTitle }}</h1>
+
+  <section class="todo-input">
+    <input
+      [(ngModel)]="newTodo"
+      (keyup.enter)="addTodo()"
+      placeholder="Adcione uma nova tarefa"
+    />
+    <button class="add-button" (click)="addTodo()">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+  </section>
+  
+  <button class="reveal-button" (click)="toggleTasksVisibility()">
+    <i class="fa-solid fa-list"></i>
+    {{ showTasks ? "Ocultar TODO List" : "Exibir TODO List" }}
+  </button>
+
+  <ul class="todo-list" *ngIf="showTasks">
+    <li *ngFor="let todo of todoList; let i = index">
+      
+      <div
+        class="todo-item"
+        *ngIf="!todo.isEditing"
+        [ngStyle]="{
+          'background-color': todo.completed ? '#DAF754' : 'initial'
+        }"
+      >
+        <span [ngClass]="{ completed: todo.completed }">{{ todo.title }}</span>
+        <button class="edit-button" (click)="startEditing(todo)">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+        <button class="remove-button" (click)="removeTodo(todo.id)">
+          <i class="fas fa-trash"></i>
+        </button>
+        <button
+          class="complete-button"
+          (click)="toggleCompleted(todo)"
+          [ngClass]="{ 'green-button': todo.completed }"
+        >
+          <i class="fa-solid fa-check"></i>
+        </button>
+      </div>
+
+      <div class="edit-item" *ngIf="todo.isEditing">
+        <input
+          class="edit-input"
+          [(ngModel)]="todo.updatedTitle"
+          (keyup.enter)="confirmEdit(todo)"
+        />
+        <button class="confirm-button" (click)="confirmEdit(todo)">
+          <i class="fa-solid fa-check"></i>
+        </button>
+      </div>
+
+    </li>
+  </ul>
+</main>
+
+<router-outlet></router-outlet>
